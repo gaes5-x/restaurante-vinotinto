@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#2E0508">
+  <meta name="description" content="Registro y seguimiento de novedades del Restaurante Vinotinto.">
+  <title>Novedades | Restaurante Vinotinto</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/identidad.css">
+  <link rel="stylesheet" href="css/app.css">
+  <script src="js/storage.js" defer></script>
+  <script src="js/ui.js" defer></script>
+  <script src="js/novedades.js" defer></script>
+</head>
+<body class="app-shell" data-page="novedades">
+  <header class="app-header">
+    <div class="app-header__marca">
+      <a class="app-header__logo-link" href="dashboard.html" aria-label="Restaurante Vinotinto, inicio">
+        <img class="app-header__logo" src="img/logo.png" alt="">
+      </a>
+      <span class="app-header__nombre">Restaurante <strong>Vinotinto</strong></span>
+    </div>
+
+    <button class="app-header__menu" id="menu-toggle" type="button" aria-controls="app-sidebar"
+      aria-expanded="false" aria-label="Abrir menú">
+      <svg aria-hidden="true" viewBox="0 0 24 24">
+        <path d="M4 7h16M4 12h16M4 17h16"></path>
+      </svg>
+    </button>
+
+    <div class="app-header__usuario">
+      <div class="app-header__identidad">
+        <span class="app-header__saludo">Sesión activa</span>
+        <strong id="usuario-nombre">Usuario</strong>
+        <span class="badge-rol" id="usuario-rol">Rol</span>
+      </div>
+      <button class="btn btn--contorno app-header__salir" id="cerrar-sesion" type="button">
+        <svg aria-hidden="true" viewBox="0 0 24 24">
+          <path d="M10 17l5-5-5-5m5 5H3m9-9h6a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-6"></path>
+        </svg>
+        <span>Cerrar sesión</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="app-layout">
+    <aside class="app-sidebar" id="app-sidebar" aria-label="Navegación principal">
+      <div class="app-sidebar__encabezado">
+        <span class="etiqueta">Administración</span>
+        <span class="app-sidebar__sello">✦ <span>Casa Vinotinto</span> ✦</span>
+      </div>
+      <nav class="app-nav" id="app-nav"></nav>
+      <div class="app-sidebar__pie">
+        <span class="app-sidebar__estrella" aria-hidden="true">✦</span>
+        <p>Tradición, sabor<br>y hospitalidad</p>
+      </div>
+    </aside>
+    <button class="app-overlay" id="sidebar-overlay" type="button" aria-label="Cerrar menú" tabindex="-1" hidden></button>
+
+    <main class="app-main">
+      <div class="app-contenido novedades-pagina">
+        <div class="app-miga">
+          <span>Restaurante Vinotinto</span>
+          <span aria-hidden="true">/</span>
+          <strong>Novedades</strong>
+        </div>
+
+        <section class="novedades-hero" aria-labelledby="novedades-titulo">
+          <div class="novedades-hero__contenido">
+            <span class="etiqueta">Cuidamos cada detalle</span>
+            <h1 id="novedades-titulo">Novedades</h1>
+            <p>Registra una situación para que el equipo pueda darle seguimiento oportuno.</p>
+          </div>
+          <div class="novedades-hero__sello" aria-hidden="true">
+            <span>✦</span>
+            <strong>V</strong>
+          </div>
+          <div class="divisor novedades-hero__divisor" aria-hidden="true"><span>✦</span></div>
+        </section>
+
+        <div class="novedades-columnas">
+          <section class="novedad-formulario tarjeta" aria-labelledby="novedad-formulario-titulo">
+            <div class="novedad-seccion__encabezado">
+              <span class="etiqueta">Nuevo reporte</span>
+              <h2 id="novedad-formulario-titulo">Registrar novedad</h2>
+              <p>Cuéntanos qué ocurrió para poder atenderlo.</p>
+            </div>
+            <form id="form-novedad" novalidate>
+              <div class="novedad-campo">
+                <label for="novedad-tipo">Tipo de novedad</label>
+                <select id="novedad-tipo" name="tipo" required>
+                  <option value="">Selecciona un tipo</option>
+                  <option value="Interna">Interna</option>
+                  <option value="De cliente">De cliente</option>
+                </select>
+              </div>
+
+              <div class="novedad-campo">
+                <label for="novedad-descripcion">Descripción</label>
+                <textarea id="novedad-descripcion" name="descripcion" rows="5" maxlength="1000"
+                  required placeholder="Describe la situación con el mayor detalle posible..."></textarea>
+                <span class="novedad-campo__ayuda">Máximo 1.000 caracteres.</span>
+              </div>
+
+              <fieldset class="novedad-prioridad">
+                <legend>Prioridad</legend>
+                <div class="novedad-prioridad__opciones">
+                  <label class="prioridad-opcion prioridad-opcion--alta">
+                    <input type="radio" name="prioridad" value="Alta" required>
+                    <span class="prioridad-opcion__indicador" aria-hidden="true"></span>
+                    <span>Alta</span>
+                  </label>
+                  <label class="prioridad-opcion prioridad-opcion--media">
+                    <input type="radio" name="prioridad" value="Media">
+                    <span class="prioridad-opcion__indicador" aria-hidden="true"></span>
+                    <span>Media</span>
+                  </label>
+                  <label class="prioridad-opcion prioridad-opcion--baja">
+                    <input type="radio" name="prioridad" value="Baja">
+                    <span class="prioridad-opcion__indicador" aria-hidden="true"></span>
+                    <span>Baja</span>
+                  </label>
+                </div>
+              </fieldset>
+
+              <p class="novedad-error" id="novedad-error" role="alert" aria-live="assertive" hidden></p>
+              <button class="btn btn--primario novedad-formulario__enviar" type="submit">
+                Crear ticket
+                <svg aria-hidden="true" viewBox="0 0 24 24">
+                  <path d="M5 12h14m-6-6 6 6-6 6"></path>
+                </svg>
+              </button>
+            </form>
+          </section>
+
+          <section class="novedades-tablero" aria-labelledby="tickets-titulo">
+            <div class="novedades-tablero__encabezado">
+              <div>
+                <span class="etiqueta" id="tickets-subtitulo">Seguimiento</span>
+                <h2 id="tickets-titulo">Tickets registrados</h2>
+              </div>
+              <span class="novedades-tablero__contador" id="tickets-contador">0 tickets</span>
+            </div>
+
+            <div class="novedad-filtros" id="novedad-filtros">
+              <div class="novedad-filtro">
+                <label for="filtro-tipo">Tipo</label>
+                <select id="filtro-tipo">
+                  <option value="">Todos</option>
+                  <option value="Interna">Interna</option>
+                  <option value="De cliente">De cliente</option>
+                </select>
+              </div>
+              <div class="novedad-filtro">
+                <label for="filtro-estado">Estado</label>
+                <select id="filtro-estado">
+                  <option value="">Todos</option>
+                  <option value="Abierta">Abierta</option>
+                  <option value="En gestión">En gestión</option>
+                  <option value="Resuelta">Resuelta</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="novedades-lista" id="novedades-lista" aria-live="polite"></div>
+            <div class="novedades-vacio tarjeta" id="novedades-vacio" hidden>
+              <span class="novedades-vacio__estrella" aria-hidden="true">✧</span>
+              <h3>No hay tickets para mostrar</h3>
+              <p>Cuando registres una novedad, aparecerá aquí para su seguimiento.</p>
+              <span class="divisor divisor--corto novedades-vacio__divisor" aria-hidden="true"><span>✦</span></span>
+            </div>
+          </section>
+        </div>
+
+        <footer class="app-pie"><span>✦</span> Restaurante Vinotinto <span>·</span> Bogotá</footer>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

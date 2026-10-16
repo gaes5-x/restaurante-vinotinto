@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#2E0508">
+  <meta name="description" content="La página que buscas no está disponible en Restaurante Vinotinto.">
+  <title>404 · Esta mesa no existe | Restaurante Vinotinto</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/identidad.css">
+  <link rel="stylesheet" href="css/app.css">
+  <script src="js/storage.js" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const session = window.vinotintoStorage.get("vinotinto_session");
+      const roles = { admin: "Administrador", mesero: "Mesero", chef: "Chef" };
+      const hasSession = session && typeof session === "object"
+        && roles[session.usuario] === session.rol;
+      document.getElementById("error-inicio").href = hasSession ? "dashboard.html" : "index.html";
+    });
+  </script>
+</head>
+<body class="error-pagina seccion--oscura">
+  <main class="error-marco">
+    <span class="error-ornamento error-ornamento--uno" aria-hidden="true">✦</span>
+    <span class="error-ornamento error-ornamento--dos" aria-hidden="true">✧</span>
+    <section class="error-tarjeta" aria-labelledby="error-titulo">
+      <div class="error-logo-marco">
+        <img src="img/logo.png" alt="Emblema del Restaurante Vinotinto">
+      </div>
+      <p class="etiqueta">Restaurante Vinotinto · Bogotá</p>
+      <p class="error-numero" aria-label="Error 404">404</p>
+      <div class="divisor divisor--corto error-divisor" aria-hidden="true"><span>✦</span></div>
+      <h1 id="error-titulo">Esta mesa no existe</h1>
+      <p class="error-mensaje">Parece que este lugar no está en nuestra carta. Vuelve al salón y te ayudaremos a encontrar lo que buscas.</p>
+      <div class="error-copa" aria-hidden="true">
+        <svg viewBox="0 0 120 150" role="img">
+          <path d="M24 16h72l-8 48c-2 14-11 24-25 27v34h24v9H33v-9h24V91c-14-3-23-13-25-27l-8-48Z"></path>
+          <path d="M30 27h60l-5 36c-2 12-10 19-25 19S37 75 35 63l-5-36Z"></path>
+          <path d="M32 55c15-7 38 8 56-2M39 69c13-4 27 6 42 0"></path>
+          <path d="M13 136h94"></path>
+          <circle cx="12" cy="136" r="3"></circle>
+          <circle cx="108" cy="136" r="3"></circle>
+        </svg>
+      </div>
+      <div class="error-acciones">
+        <a class="btn btn--dorado" id="error-inicio" href="index.html">Volver al inicio</a>
+        <a class="btn btn--contorno" href="index.html">Iniciar sesión</a>
+      </div>
+      <p class="error-pie"><span>✦</span> Una mesa siempre te espera en Vinotinto <span>✦</span></p>
+    </section>
+  </main>
+</body>
+</html>

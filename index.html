@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#2E0508">
+  <meta name="description" content="Acceso al sistema de gestión del Restaurante Vinotinto, Bogotá.">
+  <title>Iniciar sesión | Restaurante Vinotinto</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/identidad.css">
+  <link rel="stylesheet" href="css/app.css">
+  <script src="js/storage.js" defer></script>
+  <script src="js/ui.js" defer></script>
+  <script src="js/auth.js" defer></script>
+</head>
+<body class="login">
+  <main class="login__layout">
+    <section class="login__marca seccion--oscura" aria-labelledby="marca-titulo">
+      <div class="login__marca-contenido">
+        <div class="login__logo-marco">
+          <img class="login__logo" src="img/logo.png" alt="Emblema del Restaurante Vinotinto">
+        </div>
+        <p class="etiqueta login__sobrelinea">Bogotá</p>
+        <h1 class="login__titulo" id="marca-titulo">Restaurante<br>Vinotinto</h1>
+        <div class="divisor divisor--corto login__divisor" aria-hidden="true"><span>✦</span></div>
+        <p class="login__bienvenida">Bienvenido a nuestra casa.<br>El buen servicio comienza contigo.</p>
+        <!-- <p class="login__sello">Una experiencia para recordar</p> -->
+      </div>
+      <span class="login__ornamento login__ornamento--superior" aria-hidden="true">✦</span>
+      <span class="login__ornamento login__ornamento--inferior" aria-hidden="true">✧</span>
+    </section>
+
+    <section class="login__acceso" aria-labelledby="acceso-titulo">
+      <div class="login__tarjeta tarjeta">
+        <div class="login__encabezado">
+          <span class="etiqueta">Acceso al restaurante</span>
+          <h2 id="acceso-titulo">Iniciar sesión</h2>
+          <p class="texto-suave">Ingresa tus datos para continuar.</p>
+        </div>
+
+        <form class="login__formulario" id="login-form" novalidate>
+          <div class="login__campo">
+            <label for="usuario">Usuario</label>
+            <div class="login__entrada">
+              <svg aria-hidden="true" viewBox="0 0 24 24" class="login__icono">
+                <path d="M20 21a8 8 0 0 0-16 0m8-10a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z"></path>
+              </svg>
+              <input id="usuario" name="usuario" type="text" autocomplete="username" required
+                placeholder="Tu nombre de usuario">
+            </div>
+          </div>
+
+          <div class="login__campo">
+            <label for="contrasena">Contraseña</label>
+            <div class="login__entrada login__entrada--contrasena">
+              <svg aria-hidden="true" viewBox="0 0 24 24" class="login__icono">
+                <rect x="4" y="10" width="16" height="11" rx="2"></rect>
+                <path d="M8 10V7a4 4 0 0 1 8 0v3m-4 5v2"></path>
+              </svg>
+              <input id="contrasena" name="contrasena" type="password" autocomplete="current-password"
+                required placeholder="Tu contraseña">
+              <button class="login__mostrar" id="mostrar-contrasena" type="button"
+                aria-label="Mostrar contraseña" aria-pressed="false">
+                <svg aria-hidden="true" viewBox="0 0 24 24" class="login__icono login__icono--ojo">
+                  <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"></path>
+                  <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+                <span>Mostrar</span>
+              </button>
+            </div>
+          </div>
+
+          <p class="login__error" id="login-error" role="alert" aria-live="assertive" hidden></p>
+          <button class="btn btn--primario login__enviar" type="submit">
+            Iniciar sesión
+            <svg aria-hidden="true" viewBox="0 0 24 24" class="login__icono login__icono--flecha">
+              <path d="M5 12h14m-6-6 6 6-6 6"></path>
+            </svg>
+          </button>
+        </form>
+
+        <div class="divisor login__divisor-tarjeta" aria-hidden="true"><span>✦</span></div>
+        <p class="login__pie">Acceso exclusivo para el equipo<br></p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

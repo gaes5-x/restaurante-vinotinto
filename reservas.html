@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#2E0508">
+  <meta name="description" content="Gestión de reservas del Restaurante Vinotinto.">
+  <title>Reservas | Restaurante Vinotinto</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/identidad.css">
+  <link rel="stylesheet" href="css/app.css">
+  <script src="js/storage.js" defer></script>
+  <script src="js/ui.js" defer></script>
+  <script src="js/reservas.js" defer></script>
+</head>
+<body class="app-shell" data-page="reservas">
+  <header class="app-header">
+    <div class="app-header__marca">
+      <a class="app-header__logo-link" href="dashboard.html" aria-label="Restaurante Vinotinto, inicio">
+        <img class="app-header__logo" src="img/logo.png" alt="">
+      </a>
+      <span class="app-header__nombre">Restaurante <strong>Vinotinto</strong></span>
+    </div>
+
+    <button class="app-header__menu" id="menu-toggle" type="button" aria-controls="app-sidebar"
+      aria-expanded="false" aria-label="Abrir menú">
+      <svg aria-hidden="true" viewBox="0 0 24 24">
+        <path d="M4 7h16M4 12h16M4 17h16"></path>
+      </svg>
+    </button>
+
+    <div class="app-header__usuario">
+      <div class="app-header__identidad">
+        <span class="app-header__saludo">Sesión activa</span>
+        <strong id="usuario-nombre">Usuario</strong>
+        <span class="badge-rol" id="usuario-rol">Rol</span>
+      </div>
+      <button class="btn btn--contorno app-header__salir" id="cerrar-sesion" type="button">
+        <svg aria-hidden="true" viewBox="0 0 24 24">
+          <path d="M10 17l5-5-5-5m5 5H3m9-9h6a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-6"></path>
+        </svg>
+        <span>Cerrar sesión</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="app-layout">
+    <aside class="app-sidebar" id="app-sidebar" aria-label="Navegación principal">
+      <div class="app-sidebar__encabezado">
+        <span class="etiqueta">Administración</span>
+        <span class="app-sidebar__sello">✦ <span>Casa Vinotinto</span> ✦</span>
+      </div>
+      <nav class="app-nav" id="app-nav"></nav>
+      <div class="app-sidebar__pie">
+        <span class="app-sidebar__estrella" aria-hidden="true">✦</span>
+        <p>Tradición, sabor<br>y hospitalidad</p>
+      </div>
+    </aside>
+    <button class="app-overlay" id="sidebar-overlay" type="button" aria-label="Cerrar menú" tabindex="-1" hidden></button>
+
+    <main class="app-main">
+      <div class="app-contenido reservas-pagina">
+        <div class="app-miga">
+          <span>Restaurante Vinotinto</span>
+          <span aria-hidden="true">/</span>
+          <strong>Reservas</strong>
+        </div>
+
+        <section class="reservas-hero" aria-labelledby="reservas-titulo">
+          <div class="reservas-hero__contenido">
+            <span class="etiqueta">Una mesa espera por ti</span>
+            <h1 id="reservas-titulo">Reservas</h1>
+            <p>Preparamos cada detalle para recibir a tus invitados como en casa.</p>
+          </div>
+          <div class="reservas-hero__sello" aria-hidden="true">
+            <span>✦</span>
+            <strong>V</strong>
+          </div>
+          <div class="divisor reservas-hero__divisor" aria-hidden="true"><span>✦</span></div>
+        </section>
+
+        <div class="reservas-columnas">
+          <section class="reserva-formulario tarjeta" aria-labelledby="formulario-reserva-titulo">
+            <div class="reserva-seccion__encabezado">
+              <span class="etiqueta">Nueva experiencia</span>
+              <h2 id="formulario-reserva-titulo">Crear una reserva</h2>
+              <p>Atendemos reservas entre las 12:00 y las 22:00, en franjas de dos horas.</p>
+            </div>
+
+            <form id="form-reserva" novalidate>
+              <div class="reserva-campo">
+                <label for="cliente-nombre">Nombre del cliente</label>
+                <input id="cliente-nombre" name="nombre" type="text" autocomplete="name"
+                  maxlength="80" required placeholder="Nombre y apellido">
+              </div>
+
+              <div class="reserva-formulario__fila">
+                <div class="reserva-campo">
+                  <label for="reserva-fecha">Fecha</label>
+                  <input id="reserva-fecha" name="fecha" type="date" required>
+                </div>
+                <div class="reserva-campo">
+                  <label for="reserva-hora">Hora de llegada</label>
+                  <select id="reserva-hora" name="hora" required>
+                    <option value="">Selecciona una hora</option>
+                    <option value="12:00">12:00 p. m. — 2:00 p. m.</option>
+                    <option value="14:00">2:00 p. m. — 4:00 p. m.</option>
+                    <option value="16:00">4:00 p. m. — 6:00 p. m.</option>
+                    <option value="18:00">6:00 p. m. — 8:00 p. m.</option>
+                    <option value="20:00">8:00 p. m. — 10:00 p. m.</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="reserva-campo reserva-campo--personas">
+                <label for="reserva-personas">Número de personas</label>
+                <div class="reserva-personas">
+                  <svg aria-hidden="true" viewBox="0 0 24 24">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2m7-10a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm13 10v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path>
+                  </svg>
+                  <input id="reserva-personas" name="personas" type="number" min="1" max="12"
+                    step="1" required placeholder="Ej. 4">
+                  <span>máximo 12</span>
+                </div>
+              </div>
+
+              <p class="reserva-error" id="reserva-error" role="alert" aria-live="assertive" hidden></p>
+              <div class="reserva-alternativas" id="reserva-alternativas" aria-live="polite" hidden></div>
+
+              <button class="btn btn--primario reserva-formulario__enviar" type="submit">
+                Confirmar reserva
+                <svg aria-hidden="true" viewBox="0 0 24 24">
+                  <path d="M5 12h14m-6-6 6 6-6 6"></path>
+                </svg>
+              </button>
+            </form>
+          </section>
+
+          <section class="reservas-agenda" aria-labelledby="agenda-titulo">
+            <div class="reserva-agenda__encabezado">
+              <div>
+                <span class="etiqueta">Libro de reservas</span>
+                <h2 id="agenda-titulo">Agenda del día</h2>
+              </div>
+              <span class="reserva-agenda__contador" id="reservas-contador">0 reservas</span>
+            </div>
+
+            <div class="reserva-filtro">
+              <label for="filtro-fecha">Filtrar por fecha</label>
+              <div class="reserva-filtro__entrada">
+                <svg aria-hidden="true" viewBox="0 0 24 24">
+                  <path d="M4 5h16v16H4zM8 3v4m8-4v4M4 10h16"></path>
+                </svg>
+                <input id="filtro-fecha" type="date">
+              </div>
+            </div>
+            <div class="reservas-lista" id="reservas-lista" aria-live="polite"></div>
+          </section>
+        </div>
+
+        <footer class="app-pie"><span>✦</span> Restaurante Vinotinto <span>·</span> Bogotá</footer>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

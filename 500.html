@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#2E0508">
+  <meta name="description" content="Ocurrió un problema inesperado en Restaurante Vinotinto.">
+  <title>500 · Algo se quemó en la cocina | Restaurante Vinotinto</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/identidad.css">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body class="error-pagina seccion--oscura">
+  <main class="error-marco">
+    <span class="error-ornamento error-ornamento--uno" aria-hidden="true">✦</span>
+    <span class="error-ornamento error-ornamento--dos" aria-hidden="true">✧</span>
+    <section class="error-tarjeta error-tarjeta--servidor" aria-labelledby="error-titulo">
+      <div class="error-logo-marco">
+        <img src="img/logo.png" alt="Emblema del Restaurante Vinotinto">
+      </div>
+      <p class="etiqueta">Restaurante Vinotinto · Bogotá</p>
+      <p class="error-numero" aria-label="Error 500">500</p>
+      <div class="divisor divisor--corto error-divisor" aria-hidden="true"><span>✦</span></div>
+      <h1 id="error-titulo">Algo se quemó en la cocina</h1>
+      <p class="error-mensaje">Tuvimos un problema inesperado. Intenta de nuevo en unos minutos.</p>
+      <div class="error-referencia">
+        <span class="error-referencia__icono" aria-hidden="true">✧</span>
+        <span>Código de referencia</span>
+        <strong id="codigo-referencia">Generando código…</strong>
+      </div>
+      <div class="error-copa error-copa--humo" aria-hidden="true">
+        <svg viewBox="0 0 120 150">
+          <path d="M24 16h72l-8 48c-2 14-11 24-25 27v34h24v9H33v-9h24V91c-14-3-23-13-25-27l-8-48Z"></path>
+          <path d="M30 27h60l-5 36c-2 12-10 19-25 19S37 75 35 63l-5-36Z"></path>
+          <path d="M32 55c15-7 38 8 56-2M39 69c13-4 27 6 42 0"></path>
+          <path d="M13 136h94"></path>
+          <circle cx="12" cy="136" r="3"></circle>
+          <circle cx="108" cy="136" r="3"></circle>
+          <path d="M43 10c-8-7 8-8 2-16m18 16c-8-7 8-8 2-16m18 16c-8-7 8-8 2-16"></path>
+        </svg>
+      </div>
+      <div class="error-acciones">
+        <button class="btn btn--dorado" id="error-reintentar" type="button">Reintentar</button>
+        <a class="btn btn--contorno" href="index.html">Ir al inicio</a>
+      </div>
+      <p class="error-pie"><span>✦</span> Gracias por tu paciencia <span>✦</span></p>
+    </section>
+  </main>
+  <script>
+    (function () {
+      function pad(value) {
+        return String(value).padStart(2, "0");
+      }
+
+      function createReference() {
+        const now = new Date();
+        const timestamp = now.getFullYear()
+          + pad(now.getMonth() + 1)
+          + pad(now.getDate())
+          + "-"
+          + pad(now.getHours())
+          + pad(now.getMinutes())
+          + pad(now.getSeconds());
+        const suffix = Math.random().toString(36).slice(2, 6).toUpperCase();
+        return "VIN-" + timestamp + "-" + suffix;
+      }
+
+      const referenceFromUrl = new URLSearchParams(window.location.search).get("ref");
+      document.getElementById("codigo-referencia").textContent =
+        referenceFromUrl || createReference();
+
+      document.getElementById("error-reintentar").addEventListener("click", function () {
+        const previousPage = document.referrer;
+        if (previousPage) {
+          try {
+            if (new URL(previousPage).origin === window.location.origin) {
+              window.location.replace(previousPage);
+              return;
+            }
+          } catch (error) {
+            console.error("No se pudo volver a la página anterior.", error);
+          }
+        }
+        if (window.history.length > 1) {
+          window.history.back();
+          return;
+        }
+        window.location.reload();
+      });
+    })();
+  </script>
+</body>
+</html>

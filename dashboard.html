@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#2E0508">
+  <meta name="description" content="Panel de gestión del Restaurante Vinotinto.">
+  <title>Inicio | Restaurante Vinotinto</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/identidad.css">
+  <link rel="stylesheet" href="css/app.css">
+  <script src="js/storage.js" defer></script>
+  <script src="js/ui.js" defer></script>
+</head>
+<body class="app-shell" data-page="inicio">
+  <header class="app-header">
+    <div class="app-header__marca">
+      <a class="app-header__logo-link" href="dashboard.html" aria-label="Restaurante Vinotinto, inicio">
+        <img class="app-header__logo" src="img/logo.png" alt="">
+      </a>
+      <span class="app-header__nombre">Restaurante <strong>Vinotinto</strong></span>
+    </div>
+
+    <button class="app-header__menu" id="menu-toggle" type="button" aria-controls="app-sidebar"
+      aria-expanded="false" aria-label="Abrir menú">
+      <svg aria-hidden="true" viewBox="0 0 24 24">
+        <path d="M4 7h16M4 12h16M4 17h16"></path>
+      </svg>
+    </button>
+
+    <div class="app-header__usuario">
+      <div class="app-header__identidad">
+        <span class="app-header__saludo">Sesión activa</span>
+        <strong id="usuario-nombre">Usuario</strong>
+        <span class="badge-rol" id="usuario-rol">Rol</span>
+      </div>
+      <button class="btn btn--contorno app-header__salir" id="cerrar-sesion" type="button">
+        <svg aria-hidden="true" viewBox="0 0 24 24">
+          <path d="M10 17l5-5-5-5m5 5H3m9-9h6a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-6"></path>
+        </svg>
+        <span>Cerrar sesión</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="app-layout">
+    <aside class="app-sidebar" id="app-sidebar" aria-label="Navegación principal">
+      <div class="app-sidebar__encabezado">
+        <span class="etiqueta">Administración</span>
+        <span class="app-sidebar__sello">✦ <span>Vinotinto</span> ✦</span>
+      </div>
+      <nav class="app-nav" id="app-nav"></nav>
+      <div class="app-sidebar__pie">
+        <span class="app-sidebar__estrella" aria-hidden="true">✦</span>
+        <p>Tradición, sabor<br>y hospitalidad</p>
+      </div>
+    </aside>
+    <button class="app-overlay" id="sidebar-overlay" type="button" aria-label="Cerrar menú" tabindex="-1" hidden></button>
+
+    <main class="app-main">
+      <div class="app-contenido">
+        <div class="app-miga">
+          <span>Restaurante Vinotinto</span>
+          <span aria-hidden="true">/</span>
+          <strong>Inicio</strong>
+        </div>
+
+        <section class="inicio-hero" aria-labelledby="inicio-titulo">
+          <div class="inicio-hero__contenido">
+            <span class="etiqueta">Panel de servicio</span>
+            <h1 id="inicio-titulo">Bienvenido, <span id="bienvenida-nombre">equipo</span></h1>
+            <p>Tu jornada comienza aquí. Hoy es una nueva oportunidad para ofrecer una experiencia memorable.</p>
+            <div class="inicio-hero__sello"><span class="badge-rol badge-rol--claro" id="bienvenida-rol">Rol</span></div>
+          </div>
+          <div class="inicio-hero__ornamento" aria-hidden="true">
+            <span class="inicio-hero__monograma">V</span>
+            <span class="inicio-hero__estrella">✦</span>
+          </div>
+          <div class="divisor inicio-hero__divisor" aria-hidden="true"><span>✦</span></div>
+        </section>
+
+        <section class="inicio-seccion" aria-labelledby="resumen-titulo">
+          <div class="inicio-seccion__encabezado">
+            <div>
+              <span class="etiqueta">Al día</span>
+              <h2 id="resumen-titulo">Resumen de operación</h2>
+            </div>
+            <span class="inicio-fecha" id="fecha-hoy"></span>
+          </div>
+          <div class="resumen-grid">
+            <article class="resumen-tarjeta tarjeta resumen-tarjeta--pedidos">
+              <div class="resumen-tarjeta__icono" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M4 5h16v15H4zM8 3v4m8-4v4M4 10h16M8 14h3m-3 3h7"></path></svg>
+              </div>
+              <div class="resumen-tarjeta__texto">
+                <span class="etiqueta">Servicio</span>
+                <strong class="resumen-tarjeta__numero" id="resumen-pedidos">0</strong>
+                <h3>Pedidos activos</h3>
+                <a class="resumen-tarjeta__enlace" href="pedidos.html" data-summary-page="pedidos">Ver pedidos <span aria-hidden="true">→</span></a>
+              </div>
+              <span class="resumen-tarjeta__marca" aria-hidden="true">01</span>
+            </article>
+
+            <article class="resumen-tarjeta tarjeta resumen-tarjeta--reservas">
+              <div class="resumen-tarjeta__icono" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M4 5h16v15H4zM8 3v4m8-4v4M4 10h16m-8 3v4m-2-2h4"></path></svg>
+              </div>
+              <div class="resumen-tarjeta__texto">
+                <span class="etiqueta">Anfitriones</span>
+                <strong class="resumen-tarjeta__numero" id="resumen-reservas">0</strong>
+                <h3>Reservas de hoy</h3>
+                <a class="resumen-tarjeta__enlace" href="reservas.html" data-summary-page="reservas">Ver reservas <span aria-hidden="true">→</span></a>
+              </div>
+              <span class="resumen-tarjeta__marca" aria-hidden="true">02</span>
+            </article>
+
+            <article class="resumen-tarjeta tarjeta resumen-tarjeta--novedades">
+              <div class="resumen-tarjeta__icono" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 3 2.8 20h18.4L12 3Zm0 6v5m0 3h.01"></path></svg>
+              </div>
+              <div class="resumen-tarjeta__texto">
+                <span class="etiqueta">Seguimiento</span>
+                <strong class="resumen-tarjeta__numero" id="resumen-novedades">0</strong>
+                <h3>Novedades abiertas</h3>
+                <a class="resumen-tarjeta__enlace" href="novedades.html">Ver novedades <span aria-hidden="true">→</span></a>
+              </div>
+              <span class="resumen-tarjeta__marca" aria-hidden="true">03</span>
+            </article>
+          </div>
+        </section>
+
+        <div class="inicio-columnas">
+          <section class="inicio-seccion inicio-accesos" aria-labelledby="accesos-titulo">
+            <div class="inicio-seccion__encabezado">
+              <div>
+                <span class="etiqueta">A tu alcance</span>
+                <h2 id="accesos-titulo">Accesos rápidos</h2>
+              </div>
+            </div>
+            <div class="accesos-grid" id="accesos-rapidos"></div>
+          </section>
+
+          <section class="notificaciones tarjeta" id="panel-notificaciones" aria-labelledby="notificaciones-titulo">
+            <div class="notificaciones__encabezado">
+              <div>
+                <span class="etiqueta">En tiempo real</span>
+                <h2 id="notificaciones-titulo">Pedidos listos</h2>
+              </div>
+              <span class="notificaciones__campana" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9m-8 12h4"></path></svg>
+              </span>
+            </div>
+            <p class="notificaciones__introduccion">Platos listos para salir a la mesa.</p>
+            <div id="lista-pedidos-listos" class="notificaciones__lista" aria-live="polite"></div>
+            <a class="notificaciones__enlace" href="pedidos.html">Ir a pedidos <span aria-hidden="true">→</span></a>
+          </section>
+        </div>
+        <footer class="app-pie">Restaurante Vinotinto <span>·</span> Bogotá</footer>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

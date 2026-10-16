@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#2E0508">
+  <meta name="description" content="Gestión de pedidos del Restaurante Vinotinto.">
+  <title>Pedidos | Restaurante Vinotinto</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/identidad.css">
+  <link rel="stylesheet" href="css/app.css">
+  <script src="js/storage.js" defer></script>
+  <script src="js/ui.js" defer></script>
+  <script src="js/pedidos.js" defer></script>
+</head>
+<body class="app-shell" data-page="pedidos">
+  <header class="app-header">
+    <div class="app-header__marca">
+      <a class="app-header__logo-link" href="dashboard.html" aria-label="Restaurante Vinotinto, inicio">
+        <img class="app-header__logo" src="img/logo.png" alt="">
+      </a>
+      <span class="app-header__nombre">Restaurante <strong>Vinotinto</strong></span>
+    </div>
+
+    <button class="app-header__menu" id="menu-toggle" type="button" aria-controls="app-sidebar"
+      aria-expanded="false" aria-label="Abrir menú">
+      <svg aria-hidden="true" viewBox="0 0 24 24">
+        <path d="M4 7h16M4 12h16M4 17h16"></path>
+      </svg>
+    </button>
+
+    <div class="app-header__usuario">
+      <div class="app-header__identidad">
+        <span class="app-header__saludo">Sesión activa</span>
+        <strong id="usuario-nombre">Usuario</strong>
+        <span class="badge-rol" id="usuario-rol">Rol</span>
+      </div>
+      <button class="btn btn--contorno app-header__salir" id="cerrar-sesion" type="button">
+        <svg aria-hidden="true" viewBox="0 0 24 24">
+          <path d="M10 17l5-5-5-5m5 5H3m9-9h6a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-6"></path>
+        </svg>
+        <span>Cerrar sesión</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="app-layout">
+    <aside class="app-sidebar" id="app-sidebar" aria-label="Navegación principal">
+      <div class="app-sidebar__encabezado">
+        <span class="etiqueta">Administración</span>
+        <span class="app-sidebar__sello">✦ <span>Casa Vinotinto</span> ✦</span>
+      </div>
+      <nav class="app-nav" id="app-nav"></nav>
+      <div class="app-sidebar__pie">
+        <span class="app-sidebar__estrella" aria-hidden="true">✦</span>
+        <p>Tradición, sabor<br>y hospitalidad</p>
+      </div>
+    </aside>
+    <button class="app-overlay" id="sidebar-overlay" type="button" aria-label="Cerrar menú" tabindex="-1" hidden></button>
+
+    <main class="app-main">
+      <div class="app-contenido pedidos-pagina">
+        <div class="app-miga">
+          <span>Restaurante Vinotinto</span>
+          <span aria-hidden="true">/</span>
+          <strong>Pedidos</strong>
+        </div>
+
+        <section class="pedidos-hero" aria-labelledby="pedidos-titulo">
+          <div>
+            <span class="etiqueta">Servicio de mesa</span>
+            <h1 id="pedidos-titulo">Crear un pedido</h1>
+            <p>Elige la mesa y compón una cuenta con los sabores de nuestra casa.</p>
+          </div>
+          <span class="pedidos-hero__ornamento" aria-hidden="true">✦</span>
+          <div class="divisor pedidos-hero__divisor" aria-hidden="true"><span>✦</span></div>
+        </section>
+
+        <section class="pedido-constructor" aria-label="Nuevo pedido">
+          <div class="menu-platos">
+            <div class="pedido-seccion__encabezado">
+              <div>
+                <span class="etiqueta">Nuestra carta</span>
+                <h2>Menú del restaurante</h2>
+              </div>
+              <span class="menu-platos__nota">Selecciona un plato para agregarlo</span>
+            </div>
+            <div id="menu-categorias" class="menu-categorias"></div>
+          </div>
+
+          <aside class="cuenta tarjeta" aria-labelledby="cuenta-titulo">
+            <div class="cuenta__encabezado">
+              <div>
+                <span class="etiqueta">Nueva comanda</span>
+                <h2 id="cuenta-titulo">Cuenta abierta</h2>
+              </div>
+              <span class="cuenta__marca" aria-hidden="true">V</span>
+            </div>
+
+            <label class="cuenta__label" for="mesa">Mesa</label>
+            <div class="cuenta__selector">
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <path d="M3 10h18M5 10V6h14v4m-14 0v9m14-9v9M3 19h18"></path>
+              </svg>
+              <select id="mesa" name="mesa" required>
+                <option value="">Selecciona una mesa</option>
+                <option value="1">Mesa 1</option>
+                <option value="2">Mesa 2</option>
+                <option value="3">Mesa 3</option>
+                <option value="4">Mesa 4</option>
+                <option value="5">Mesa 5</option>
+                <option value="6">Mesa 6</option>
+                <option value="7">Mesa 7</option>
+                <option value="8">Mesa 8</option>
+                <option value="9">Mesa 9</option>
+                <option value="10">Mesa 10</option>
+              </select>
+            </div>
+
+            <div class="cuenta__divisor divisor divisor--corto" aria-hidden="true"><span>✦</span></div>
+            <div class="cuenta__items" id="cuenta-items" aria-live="polite"></div>
+            <div class="cuenta__vacia" id="cuenta-vacia">
+              <span aria-hidden="true">✧</span>
+              <p>Aún no hay platos.<br>Explora la carta para comenzar.</p>
+            </div>
+            <div class="cuenta__total">
+              <span>TOTAL</span>
+              <strong id="pedido-total">$0</strong>
+            </div>
+            <p class="cuenta__error" id="pedido-error" role="alert" aria-live="assertive" hidden></p>
+            <button class="btn btn--primario cuenta__confirmar" id="confirmar-pedido" type="button">
+              Confirmar pedido
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <path d="M5 12h14m-6-6 6 6-6 6"></path>
+              </svg>
+            </button>
+            <p class="cuenta__nota">Al confirmar, el pedido se enviará a cocina.</p>
+          </aside>
+        </section>
+
+        <section class="pedidos-historial" aria-labelledby="historial-titulo">
+          <div class="pedido-seccion__encabezado">
+            <div>
+              <span class="etiqueta">Actividad de tu sesión</span>
+              <h2 id="historial-titulo">Pedidos recientes</h2>
+            </div>
+            <span class="pedidos-historial__contador" id="pedidos-contador">0 pedidos</span>
+          </div>
+          <div class="pedidos-historial__lista" id="pedidos-lista" aria-live="polite"></div>
+        </section>
+        <footer class="app-pie"><span>✦</span> Restaurante Vinotinto <span>·</span> Bogotá</footer>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
